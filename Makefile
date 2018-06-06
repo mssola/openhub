@@ -62,17 +62,6 @@ test:
 # Validation tools.
 #
 
-# TODO
-EPOCH_COMMIT ?= b6061031a600
-.PHONY: validate-git
-validate-git:
-	@which git-validation > /dev/null 2>/dev/null || (echo "ERROR: git-validation not found." && false)
-ifdef TRAVIS_COMMIT_RANGE
-	git-validation -q
-else
-	git-validation -q -range $(EPOCH_COMMIT)..HEAD
-endif
-
 .PHONY: validate-go
 validate-go:
 	@which gofmt >/dev/null 2>/dev/null || (echo "ERROR: gofmt not found." && false)
@@ -83,7 +72,7 @@ validate-go:
 	test -z "$$(go vet . | grep -v vendor | tee /dev/stderr)"
 
 .PHONY: validate
-validate: validate-git validate-go
+validate: validate-go
 
 #
 # Docker image
