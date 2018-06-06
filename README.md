@@ -1,4 +1,4 @@
-# portusctl [![Build Status](https://travis-ci.org/mssola/openhub.svg?branch=master)](https://travis-ci.org/mssola/openhub) [![Go Report Card](https://goreportcard.com/badge/github.com/mssola/openhub)](https://goreportcard.com/report/github.com/mssola/openhub)
+# openhub [![Build Status](https://travis-ci.org/mssola/openhub.svg?branch=master)](https://travis-ci.org/mssola/openhub) [![Go Report Card](https://goreportcard.com/badge/github.com/mssola/openhub)](https://goreportcard.com/report/github.com/mssola/openhub)
 
 **openhub** is a small glue service between an [Open Build
 Service](https://openbuildservice.org/) instance and the [Docker
