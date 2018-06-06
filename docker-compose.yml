@@ -1,0 +1,12 @@
+version: '3'
+services:
+  openhub:
+    image: mssola/openhub:0.1.0
+    restart: unless-stopped
+    volumes:
+      - ./examples:/examples:ro
+    command: [/examples/portus.yml]
+    environment:
+      OPENHUB_OBS_USER: mssola
+      OPENHUB_OBS_PASSWORD: secretpassword
+      OPENHUB_DOCKER_TOKEN: secrettoken

@@ -1,0 +1,15 @@
+services:
+  portus-head:
+    project: "Virtualization:containers:Portus"
+    distribution: "openSUSE_Leap_42.3"
+    architecture: "x86_64"
+    package: "portus"
+    repository: "opensuse/portus"
+    tags: ["head"]
+  portus-2.3:
+    project: "Virtualization:containers:Portus:2.3"
+    distribution: "openSUSE_Leap_42.3"
+    architecture: "x86_64"
+    package: "portus"
+    repository: "opensuse/portus"
+    tags: ["2.3", "latest"]
