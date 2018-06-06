@@ -1,7 +1,7 @@
 version: '3'
 services:
   openhub:
-    image: mssola/openhub:0.1.0
+    image: mssola/openhub:latest
     restart: unless-stopped
     volumes:
       - ./examples:/examples:ro
