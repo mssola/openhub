@@ -5,7 +5,7 @@ Service](https://openbuildservice.org/) instance and the [Docker
 Hub](https://hub.docker.com/).
 
 The main task of **openhub** is to check whether there is an update on an RPM,
-and then trigger a rebuild on a tag. This is done through a configuration that
+and then trigger a Docker image rebuild on a tag. This is done through a configuration that
 looks like this:
 
 ```yml
@@ -29,7 +29,7 @@ services:
 In the above example, we are telling **openhub** to listen for changes on
 `Virtualization:containers:Portus` and `Virtualization:containers:Portus:2.3`
 (particularly on the `portus` package from Leap 42.3 and the x86_64
-architecture). Whenever there is a new revision, then it will trigger a rebuild
+architecture). Whenever there is a new revision, then it will trigger a Docker image rebuild
 on the proper repository/tag combination.
 
 You can run **openhub** like this:
