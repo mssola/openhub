@@ -70,7 +70,7 @@ func TestSyncSingleShotOK(t *testing.T) {
 		Token:      "token",
 		SingleShot: true,
 		Listeners: []Listener{
-			Listener{
+			{
 				Name:         "portus-2.3",
 				Project:      "Virtualization:containers:Portus:2.3",
 				Distribution: "openSUSE_Leap_42.3",
@@ -124,7 +124,7 @@ func TestSyncOBSFails(t *testing.T) {
 		Token:      "token",
 		SingleShot: true,
 		Listeners: []Listener{
-			Listener{
+			{
 				Name:         "portus-2.3",
 				Project:      "Virtualization:containers:Portus:2.3",
 				Distribution: "openSUSE_Leap_42.3",
@@ -173,7 +173,7 @@ func TestSyncHubFails(t *testing.T) {
 		Token:      "token",
 		SingleShot: true,
 		Listeners: []Listener{
-			Listener{
+			{
 				Name:         "portus-2.3",
 				Project:      "Virtualization:containers:Portus:2.3",
 				Distribution: "openSUSE_Leap_42.3",

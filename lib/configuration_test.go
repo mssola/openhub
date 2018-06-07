@@ -104,7 +104,7 @@ func TestParseConfiguration(t *testing.T) {
 		t.Fatalf("Expecting no errors")
 	}
 	testListeners(t, cfg.Listeners, []Listener{
-		Listener{
+		{
 			Name:         "portus-head",
 			Project:      "Virtualization:containers:Portus",
 			Distribution: "openSUSE_Leap_15.0",
@@ -113,7 +113,7 @@ func TestParseConfiguration(t *testing.T) {
 			Repository:   "opensuse/portus",
 			Tags:         []string{"head"},
 		},
-		Listener{
+		{
 			Name:         "portus-2.3",
 			Project:      "Virtualization:containers:Portus:2.3",
 			Distribution: "openSUSE_Leap_42.3",
