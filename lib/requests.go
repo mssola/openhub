@@ -25,7 +25,8 @@ import (
 	"time"
 )
 
-const requestTimeout = 15 * time.Second
+var requestTimeout = 15 * time.Second
+var dockerHub = "https://registry.hub.docker.com/u/"
 
 func request(cfg *Configuration, method, endpoint string) (*http.Response, error) {
 	client := http.Client{Timeout: requestTimeout}
@@ -93,7 +94,7 @@ func fetchRevision(cfg *Configuration, list Listener) string {
 
 func updateHub(token, repository string, tags []string) bool {
 	client := http.Client{Timeout: requestTimeout}
-	url := "https://registry.hub.docker.com/u/" + repository + "/trigger/" + token + "/"
+	url := dockerHub + repository + "/trigger/" + token + "/"
 
 	for _, tag := range tags {
 		reader := bytes.NewBuffer([]byte("{\"docker_tag\": \"" + tag + "\"}"))

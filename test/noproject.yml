@@ -1,0 +1,7 @@
+services:
+  portus-head:
+    distribution: "openSUSE_Leap_42.3"
+    architecture: "x86_64"
+    package: "portus"
+    repository: "opensuse/portus"
+    tags: ["head"]

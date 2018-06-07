@@ -55,7 +55,7 @@ clean-binary:
 #
 
 .PHONY: test
-test:
+test: clean
 	$(GO) test -v ./...
 
 #

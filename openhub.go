@@ -23,12 +23,25 @@ import (
 	"gopkg.in/urfave/cli.v1"
 )
 
+func fetchCredentials(ctx *cli.Context) lib.Credentials {
+	return lib.Credentials{
+		Server:   ctx.String("server"),
+		User:     ctx.String("user"),
+		Password: ctx.String("password"),
+		Token:    ctx.String("token"),
+	}
+}
+
 func run(ctx *cli.Context) error {
 	if len(ctx.Args()) != 1 {
 		return fmt.Errorf("Exactly one argument is required, but %v was given", len(ctx.Args()))
 	}
 
-	cfg, err := lib.ParseConfiguration(ctx)
+	cfg, err := lib.ParseConfiguration(
+		ctx.Args().First(),
+		fetchCredentials(ctx),
+		lib.Options{SingleShot: ctx.Bool("single-shot")},
+	)
 	if err != nil {
 		return err
 	}

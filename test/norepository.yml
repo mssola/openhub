@@ -1,0 +1,7 @@
+services:
+  portus-head:
+    project: "Virtualization:containers:Portus"
+    distribution: "openSUSE_Leap_42.3"
+    architecture: "x86_64"
+    package: "portus"
+    tags: ["head"]

@@ -21,14 +21,32 @@ import (
 	"log"
 	"path/filepath"
 
-	"gopkg.in/urfave/cli.v1"
 	"gopkg.in/yaml.v2"
 )
 
 const (
+	// defaultDistribution will be picked if the configuration does not specify
+	// one.
 	defaultDistribution = "openSUSE_Leap_15.0"
+
+	// defaultArchitecture will be picked if the configuration does not specify
+	// one.
 	defaultArchitecutre = "x86_64"
 )
+
+// Credentials is a helper struct that you can use to pass credential options to
+// the `ParseConfiguration` function.
+type Credentials struct {
+	Server   string
+	User     string
+	Password string
+	Token    string
+}
+
+// Options contain some extra options that may be given to the `ParseConfiguration`.
+type Options struct {
+	SingleShot bool
+}
 
 // Configuration holds all the data relevant for this application to perform
 // properly.
@@ -60,18 +78,18 @@ type ConfigFile struct {
 
 // ParseConfiguration returns a proper Configuration object by taking into
 // account the given flags and the configuration file.
-func ParseConfiguration(ctx *cli.Context) (*Configuration, error) {
-	listeners, err := parseConfiguration(ctx.Args().First())
+func ParseConfiguration(path string, crd Credentials, opts Options) (*Configuration, error) {
+	listeners, err := parseConfiguration(path)
 	if err != nil {
 		return nil, err
 	}
 
 	return &Configuration{
-		Server:     ctx.String("server"),
-		User:       ctx.String("user"),
-		Password:   ctx.String("password"),
-		Token:      ctx.String("token"),
-		SingleShot: ctx.Bool("single-shot"),
+		Server:     crd.Server,
+		User:       crd.User,
+		Password:   crd.Password,
+		Token:      crd.Token,
+		SingleShot: opts.SingleShot,
 		Listeners:  listeners,
 	}, nil
 }
@@ -93,10 +111,7 @@ func parseConfiguration(configurationPath string) ([]Listener, error) {
 
 // readConfigFile returns the contents from the configuration file.
 func readConfigFile(configurationPath string) ([]byte, error) {
-	path, err := filepath.Abs(configurationPath)
-	if err != nil {
-		return nil, err
-	}
+	path, _ := filepath.Abs(configurationPath)
 	return ioutil.ReadFile(path)
 }
 
@@ -132,6 +147,5 @@ func sanitizeListeners(settings ConfigFile) ([]Listener, error) {
 
 		listeners = append(listeners, list)
 	}
-
 	return listeners, nil
 }
