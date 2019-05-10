@@ -26,6 +26,7 @@ import (
 func fetchCredentials(ctx *cli.Context) lib.Credentials {
 	return lib.Credentials{
 		Server:   ctx.String("server"),
+		Download: ctx.String("download"),
 		User:     ctx.String("user"),
 		Password: ctx.String("password"),
 		Token:    ctx.String("token"),
@@ -65,9 +66,15 @@ func main() {
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:   "server, s",
-			Usage:  "The location of the Open Build Service server",
+			Usage:  "The location of the Open Build Service API server",
 			Value:  "https://api.opensuse.org",
 			EnvVar: "OPENHUB_OBS_SERVER",
+		},
+		cli.StringFlag{
+			Name:   "download, d",
+			Usage:  "The location of the Open Build Service download server",
+			Value:  "https://build.opensuse.org",
+			EnvVar: "OPENHUB_OBS_DOWNLOAD_SERVER",
 		},
 		cli.StringFlag{
 			Name:   "password, p",

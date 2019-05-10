@@ -1,0 +1,9 @@
+services:
+  portus-2.5:
+    project: "Virtualization:containers:Portus:2.5"
+    distribution: "images"
+    architecture: "x86_64"
+    package: "portus-image"
+    repository: "opensuse/portus"
+    tags: ["2.5", "latest"]
+    localbuild: true

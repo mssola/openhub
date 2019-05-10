@@ -83,11 +83,16 @@ func synchronize(cfg *Configuration, list Listener, st *state) {
 
 	val, ok := st.revisions[list.Name]
 	if !ok || val != rev {
-		if updateHub(cfg.Token, list.Repository, list.Tags) {
+		if list.LocalBuild {
+			if err := buildAndPush(cfg, list); err != nil {
+				log.Printf("Failed to update to revision '%v' for the tags: %v; for repository '%v': %v",
+					rev, joinTags(list.Tags), list.Repository, err)
+			}
+		} else if updateHub(cfg.Token, list.Repository, list.Tags) {
 			log.Printf("Updated to revision '%v' the tags: %v; for repository '%v'",
 				rev, joinTags(list.Tags), list.Repository)
-			st.revisions[list.Name] = rev
 		}
+		st.revisions[list.Name] = rev
 	} else {
 		log.Printf("%v: everything up-to-date, skipping...", list.Name)
 	}

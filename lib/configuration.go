@@ -38,6 +38,7 @@ const (
 // the `ParseConfiguration` function.
 type Credentials struct {
 	Server   string
+	Download string
 	User     string
 	Password string
 	Token    string
@@ -52,6 +53,7 @@ type Options struct {
 // properly.
 type Configuration struct {
 	Server     string
+	Download   string
 	User       string
 	Password   string
 	Token      string
@@ -68,6 +70,7 @@ type Listener struct {
 	Architecture string   `yaml:"architecture"`
 	Package      string   `yaml:"package"`
 	Repository   string   `yaml:"repository"`
+	LocalBuild   bool     `yaml:"localbuild"`
 	Tags         []string `yaml:"tags"`
 }
 
@@ -86,6 +89,7 @@ func ParseConfiguration(path string, crd Credentials, opts Options) (*Configurat
 
 	return &Configuration{
 		Server:     crd.Server,
+		Download:   crd.Download,
 		User:       crd.User,
 		Password:   crd.Password,
 		Token:      crd.Token,

@@ -25,7 +25,8 @@ import (
 	"time"
 )
 
-var requestTimeout = 15 * time.Second
+// TODO: request and contact timeout
+var requestTimeout = 1 * time.Minute
 var dockerHub = "https://registry.hub.docker.com/u/"
 
 func request(cfg *Configuration, method, endpoint string) (*http.Response, error) {
